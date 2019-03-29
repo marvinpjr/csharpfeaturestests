@@ -1,6 +1,7 @@
 using CSharpFeaturesTests.ClassesToTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Threading.Tasks;
 using static CSharpFeaturesTests.ClassesToTest.Person;
 
 namespace CSharpFeaturesTests
@@ -74,19 +75,30 @@ namespace CSharpFeaturesTests
         [TestMethod]
         public void CanUseExceptionFilters()
         {
-            throw new NotImplementedException();
+            var p1 = new Person("Marvin", "Palmer");            
+
+            Assert.AreEqual(true, p1.IsFirstNameExcept("Marvin"));
+            Assert.AreEqual(false, p1.IsFirstNameExcept("Cody"));
         }
 
         [TestMethod]
         public void CanUseNameOfExpression()
         {
-            throw new NotImplementedException();
+            var p1 = new Person();
+            Assert.AreEqual("FirstName", nameof(p1.FirstName));
         }
 
         [TestMethod]
-        public void CanUseAwaitInCatchFinally()
+        public async Task CanUseAwaitInCatchFinally()
         {
-            throw new NotImplementedException();
+            var p1 = new Person();
+            var p2 = new Person("Marvin", "Palmer");
+
+            var p1Full = await p1.GetFullNameAsync();
+            var p2Full = await p2.GetFullNameAsync();
+
+            Assert.AreEqual(0, p1.Errors.Count);
+            Assert.AreEqual(1, p2.Errors.Count);
         }
 
         [TestMethod]
