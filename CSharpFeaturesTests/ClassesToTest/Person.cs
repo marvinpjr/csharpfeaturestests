@@ -12,12 +12,25 @@ namespace CSharpFeaturesTests.ClassesToTest
         public static int DefaultAge { get; } = 12;
         public string FullName => (FirstName == "Garrett") ? $"Joshua {FirstName} {LastName}" : $"{FirstName} {LastName}";
         public List<string> Errors { get; set; } = new List<string>();
+        public Dictionary<string, string> PhoneNumbers { get; set; }
 
-        public Person() {}
+        /// <summary>
+        /// Initializes PhoneNumbers dictionary with 3 numbers
+        /// </summary>
+        public Person() {
+            PhoneNumbers = new Dictionary<string, string>
+            {
+                ["Home"] = "615-867-5309",
+                ["Office"] = "615-555-1212",
+                ["Cell"] = "615-888-2255"
+            };
+        }
+
+        
         public Person(string firstName, string lastName)
         {
             this.FirstName = firstName;
-            this.LastName = lastName;            
+            this.LastName = lastName;                        
         }
 
         public void GetSuffixed(string suffix, out string suffixed) {

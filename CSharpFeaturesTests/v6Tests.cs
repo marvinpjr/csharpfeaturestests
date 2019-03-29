@@ -91,12 +91,15 @@ namespace CSharpFeaturesTests
         [TestMethod]
         public async Task CanUseAwaitInCatchFinally()
         {
+            // Arrange
             var p1 = new Person();
             var p2 = new Person("Marvin", "Palmer");
 
+            // Act
             var p1Full = await p1.GetFullNameAsync();
             var p2Full = await p2.GetFullNameAsync();
 
+            // Assert        
             Assert.AreEqual(0, p1.Errors.Count);
             Assert.AreEqual(1, p2.Errors.Count);
         }
@@ -104,19 +107,15 @@ namespace CSharpFeaturesTests
         [TestMethod]
         public void CanInitAssociativeCollectionsUsingIndexers()
         {
-            throw new NotImplementedException();
-        }
+            // Arrange
+            var p1 = new Person();
 
-        [TestMethod]
-        public void CanHaveExtensionAddMethodsInCollectionInitializers()
-        {
-            throw new NotImplementedException();
-        }
+            // Act
+            p1.PhoneNumbers.Add("Secret", "888-123-4567");
 
-        [TestMethod]
-        public void CanHaveImprovedOverloadResolution()
-        {
-            throw new NotImplementedException();
+            // Assert
+            Assert.AreEqual(4, p1.PhoneNumbers.Count);
+            Assert.AreEqual("888-123-4567", p1.PhoneNumbers["Secret"]);
         }
     }
 }
